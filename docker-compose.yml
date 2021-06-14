@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  client:
+    build:
+      context: ./client/docker
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # allow us to do hot reload
+      - /app/node_modules
+      - .:/app
+  server:
+    image: node:alpine
+    build:
+      context: ./server/docker
+      dockerfile: Dockerfile.dev
+    restart: always
+    environment:
+      - MONGO_DB_URL=${MONGO_DB_URL}
+      - MONGO_DB_NAME=${MONGO_DB_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRY=${JWT_EXPIRY}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - NODE_PATH=${NODE_PATH}
+    ports:
+      - "4000:4000"

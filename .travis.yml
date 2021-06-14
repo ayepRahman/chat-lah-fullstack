@@ -1,0 +1,20 @@
+# sudo: required
+# services:
+#   - docker
+
+# before_install:
+#   - docker build -t arifrahman88/chat-lah-client -f Dockerfile.dev .
+
+# language: generic
+
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "us-east-2"
+#   app: "chat-lah-client"
+#   env: "Chatlahclient-env"
+#   bucket_name: "elasticbeanstalk-us-east-2-554295778024"
+#   bucket_path: "chat-lah-client"
+#   on:
+#     branch: main
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY

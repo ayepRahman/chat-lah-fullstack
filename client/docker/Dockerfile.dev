@@ -1,0 +1,12 @@
+# cmd to run docker while attaching pwd to container for hot reload
+# ❯ docker run -it -p 3000:3000 -v $(pwd):/app arifrahman88/chat-lah-client 
+
+FROM node:alpine
+
+WORKDIR '/app'
+COPY package*.json ./
+
+RUN npm install
+COPY . .
+
+CMD ["npm", "start"]
