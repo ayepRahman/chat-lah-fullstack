@@ -74,10 +74,6 @@ const ChannelMessages = () => {
           channelId: cid || "",
         },
         updateQuery: (prev, { subscriptionData }) => {
-          console.log({
-            prev,
-            subscriptionData,
-          });
           if (!subscriptionData.data) return prev;
           const newMessage = subscriptionData.data.newMessage;
 

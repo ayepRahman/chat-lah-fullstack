@@ -25,7 +25,6 @@ const ChannelAddMessage = () => {
   const [channelAddMessage, { loading }] = useMutation(CHANNEL_ADD_MESSAGE);
 
   const onSubmit = (values: any) => {
-    console.log(values);
     channelAddMessage({
       variables: {
         channelId,

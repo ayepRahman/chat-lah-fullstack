@@ -1,6 +1,4 @@
 import dotenv from "dotenv-flow";
-
-// process.env.NODE_ENV = process.env.NODE_ENV || "development";
 dotenv.config();
 
 export const PORT = process.env.PORT || 4000;
@@ -10,11 +8,3 @@ export const JWT_SECRET = process.env.JWT_SECRET || "";
 export const JWT_EXPIRY = process.env.JWT_EXPIRY || "";
 export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || "";
 export const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || "";
-
-// console.log("ENV >>>>>>>>>>", {
-//   NODE_ENV: process.env.NODE_ENV,
-//   MONGO_DB_URL,
-//   MONGO_DB_NAME,
-//   JWT_SECRET,
-//   JWT_EXPIRY,
-// });

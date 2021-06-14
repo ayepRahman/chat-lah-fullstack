@@ -8,8 +8,6 @@ import { LocalStorage } from "enums/LocalStorage";
 import { Routes } from "enums/Routes";
 import { cache } from "apollo/cache";
 
-console.log("SERVER>>> LAHs", SERVER_URL);
-
 // Error handling guide -
 // https://www.apollographql.com/blog/graphql/error-handling/full-stack-error-handling-with-graphql-apollo/
 const errorLink = onError(({ graphQLErrors, networkError }: ErrorResponse) => {
@@ -61,7 +59,6 @@ const authLink = setContext((_, { headers }) => {
 
 const httpLink = new HttpLink({
   uri: `${SERVER_URL}`,
-  // credentials: "include", // TODO: add cors
 });
 
 // The split function takes three parameters:

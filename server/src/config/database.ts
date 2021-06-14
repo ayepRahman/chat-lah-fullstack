@@ -11,8 +11,6 @@ const options = {
 export const mongooseConnect = async () => {
   try {
     const url = `${MONGO_DB_URL}/${MONGO_DB_NAME}`;
-
-    console.log(url);
     await connect(url, options);
     logger(
       LogMessageType.SUCCESS,
