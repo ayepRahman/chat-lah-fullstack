@@ -3,10 +3,12 @@ import { onError, ErrorResponse } from "@apollo/client/link/error";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { setContext } from "@apollo/client/link/context";
-import { SERVER_URL } from "constants/env";
+import { SERVER_URL, WS_URL } from "constants/env";
 import { LocalStorage } from "enums/LocalStorage";
 import { Routes } from "enums/Routes";
 import { cache } from "apollo/cache";
+
+console.log("SERVER>>> LAHs", SERVER_URL);
 
 // Error handling guide -
 // https://www.apollographql.com/blog/graphql/error-handling/full-stack-error-handling-with-graphql-apollo/
@@ -34,7 +36,7 @@ const errorLink = onError(({ graphQLErrors, networkError }: ErrorResponse) => {
 });
 
 const wsLink = new WebSocketLink({
-  uri: "ws://localhost:4000/subscriptions",
+  uri: WS_URL,
   options: {
     reconnect: true,
   },
@@ -58,7 +60,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const httpLink = new HttpLink({
-  uri: SERVER_URL,
+  uri: `${SERVER_URL}`,
   // credentials: "include", // TODO: add cors
 });
 

@@ -2,19 +2,24 @@ version: "3"
 
 services:
   client:
+    container_name: client
     build:
-      context: ./client/docker
+      context: ./client
       dockerfile: Dockerfile.dev
+    environment:
+      - REACT_APP_GOOGLE_CLIENT_ID=${REACT_APP_GOOGLE_CLIENT_ID}
+      - REACT_APP_SERVER_URL=${REACT_APP_SERVER_URL}
+      - REACT_APP_WS_URL=${REACT_APP_WS_URL}
     ports:
       - "3000:3000"
     volumes:
       # allow us to do hot reload
       - /app/node_modules
-      - .:/app
+      - ./client:/app
   server:
-    image: node:alpine
+    container_name: server
     build:
-      context: ./server/docker
+      context: ./server
       dockerfile: Dockerfile.dev
     restart: always
     environment:
@@ -24,6 +29,18 @@ services:
       - JWT_EXPIRY=${JWT_EXPIRY}
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
-      - NODE_PATH=${NODE_PATH}
+      - NODE_PATH=src
     ports:
       - "4000:4000"
+    volumes:
+      # allow us to do hot reload
+      - /app/node_modules
+      - ./server:/app
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017

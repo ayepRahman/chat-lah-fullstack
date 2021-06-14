@@ -1,4 +1,6 @@
 .vscode
+.env
+.env.local
 
 # client
 /client/node_modules

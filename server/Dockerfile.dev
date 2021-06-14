@@ -1,14 +1,15 @@
 # https://dev.to/dariansampare/setting-up-docker-typescript-node-hot-reloading-code-changes-in-a-running-container-2b2f
 
 #  Specify base image
-FROM node:alpine as build
+FROM node:14.14.0-alpine
 
 # Adding folder and copy in container
-WORKDIR /app
-COPY . .
+WORKDIR '/app'
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
+COPY . .
 
 # Default command
-CMD [ "npm", "start:dev" ]
+CMD [ "npm", "run", "start:dev" ]
