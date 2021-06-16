@@ -16,12 +16,11 @@ services:
       # allow us to do hot reload
       - /app/node_modules
       - ./client:/app
-  server:
-    container_name: server
+  api:
+    container_name: api
     build:
       context: ./server
       dockerfile: Dockerfile.dev
-    restart: always
     environment:
       - MONGO_DB_URL=${MONGO_DB_URL}
       - MONGO_DB_NAME=${MONGO_DB_NAME}
@@ -41,6 +40,5 @@ services:
   mongodb:
     image: mongo
     container_name: mongodb
-    restart: always
     ports:
       - 27017:27017
