@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - MONGO_DB_URL=${MONGO_DB_URL}
+      - MONGO_DB_NAME=${MONGO_DB_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRY=${JWT_EXPIRY}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - NODE_PATH=src
+    ports:
+      - "4000:4000"
+    volumes:
+      # allow us to do hot reload
+      - /node_modules
+      - .:/app
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017

@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  client:
+    container_name: client
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - REACT_APP_GOOGLE_CLIENT_ID=${REACT_APP_GOOGLE_CLIENT_ID}
+      - REACT_APP_SERVER_URL=${REACT_APP_SERVER_URL}
+      - REACT_APP_WS_URL=${REACT_APP_WS_URL}
+    ports:
+      - "3000:3000"
+    volumes:
+      # allow us to do hot reload
+      - /node_modules
+      - .:/app

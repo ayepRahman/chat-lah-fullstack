@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort
+  ports:
+    # Allow other pod withing the NODE to connect with "client"
+    - port: 3050
+      # client expose port in client-pod.yaml
+      targetPort: 3000
+      # port for browser to access http://localhost:31515, only for dev
+      nodePort: 31515
+  selector:
+    component: web
