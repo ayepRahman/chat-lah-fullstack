@@ -1,7 +1,7 @@
 # cmd to run docker while attaching pwd to container for hot reload
 # ❯ docker run -it -p 3000:3000 -v $(pwd):/app arifrahman88/chat-lah-client 
 
-FROM node:14.14.0-alpine
+FROM node:16.3.0-alpine
 
 WORKDIR '/app'
 COPY package*.json ./

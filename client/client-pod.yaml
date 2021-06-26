@@ -8,7 +8,7 @@ spec:
   containers:
     - name: client
       # should be deployed on docker hub to access
-      image: arifrahman88/chat-lah-client
+      image: arifrahman88/chat-lah-client:latest
       ports:
         - containerPort: 3000
       resources:
