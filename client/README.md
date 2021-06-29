@@ -51,10 +51,40 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 Make sure we installed docker
 
+### Env setting
+
+https://vsupalov.com/docker-env-vars/
+
+### React routing with ngix
+
+https://levelup.gitconnected.com/dockerizing-a-react-application-using-nginx-and-react-router-43154cc8e58c
+
 ### Dev
 
 #### Build
 
 ```
-docker build -t <name> <docker file path e.g /Dockerfile.dev>
+$ docker build -t client-prod -f Dockerfile.dev .
+```
+
+### Run
+
+```
+# docker run -it -p 3000:80 arifrahman88/chat-lah-client
+
+```
+
+### Prod
+
+#### Build
+
+```
+$ docker build -t arifrahman88/chat-lah-client --build-arg REACT_APP_GOOGLE_CLIENT_ID=<value> --build-arg REACT_APP_SERVER_URL=<value> --build-arg REACT_APP_WS_URL=<value> .
+```
+
+#### Run
+
+```
+# docker run -it -p 3000:80 arifrahman88/chat-lah-client
+
 ```

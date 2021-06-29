@@ -12,7 +12,7 @@
 /client/.pnp
 /client/.pnp.js
 /client/coverage
-/client/package.lock.json
+/client/package-lock.json
 
 # misc
 /client/.DS_Store
@@ -25,4 +25,4 @@
 /server/build
 /server/.env.local
 /server/.env
-/server/package.lock.json
+/server/package-lock.json
